@@ -23,7 +23,8 @@ p,
 span,
 a,
 li,
-ul {
+ul,
+h1 {
     line-height: 1.5em;
 }
 
@@ -51,7 +52,10 @@ button:hover {
 .nav-main {
     display: flex;
     justify-content: space-between;
-    padding: 1em 3em;
+    padding: 0.5em 2em;
+}
+
+nav {
     box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.05);
 }
 
@@ -200,7 +204,7 @@ footer div span:hover {
 }
 
 .limiter {
-    max-width: 1500px;
+    max-width: 1300px;
     margin: auto;
 }
 
@@ -233,19 +237,20 @@ footer div span:hover {
 }
 
 .font-3x {
-    font-size: 50px;
+    font-size: 40px;
 }
 
 .bold {
-    font-weight: 500;
+    font-weight: 400;
 }
 
 .light {
     font-weight: 100;
 }
 
-
-
+.nobreak {
+    white-space: nowrap;
+}
 
 
 /* ----- Color ----- */
@@ -346,7 +351,7 @@ footer div span:hover {
 }
 
 .img-3x {
-    width: 28em;
+    width: 26em;
 }
 
 
@@ -534,7 +539,7 @@ select:focus {
         margin-top: 1em;
     }
 
-    .header-logo p {
+    .font-3x {
         font-size: 30px;
     }
 
@@ -582,3 +587,10 @@ select:focus {
     }
 
 }
+
+@media (max-width: 400px) {
+    .header-logo .spaced-h-2x {
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+}    
