@@ -405,12 +405,12 @@
 		<script src="js/github.js"></script>
 
 		<script>
-			const view = new GithubApiView();
+			const getApi = new GetApi();
 
 			// GitHub Repositories to Render in Portfolio Section.
-			view.getInfo('vue-weather');
-			view.getInfo('to-do-app');
-			view.getInfo('tip-calculator');
+			getApi.getInfo('vue-weather');
+			getApi.getInfo('to-do-app');
+			getApi.getInfo('tip-calculator');
 		</script>
 	</body>
 </html>
