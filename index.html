@@ -85,14 +85,14 @@
 					<h2 class="section-heading text-uppercase">Portfolio</h2>
 					<h3 class="section-subheading text-muted">See below the projects I have been working on!</h3>
 				</div>
-				<div class="row">
-					<div class="col-lg-4 col-sm-6 mb-4">
+				<div class="row" id="portfolioContainer">
+					<!-- <div class="col-lg-4 col-sm-6 mb-4">
 						<div class="portfolio-item">
 							<a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
 								<div class="portfolio-hover">
 									<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
 								</div>
-								<img class="img-fluid" src="assets/img/portfolio/vue-weather.png" alt="Vue weather project thumbnail" />
+								<img class="img-fluid" src="assets/img/portfolio/vue-weatherr.png" onerror="this.onerror=null; this.src='https://via.placeholder.com/356x245/505050/FED136?text=vue-weather';" alt="Vue weather project thumbnail" />
 							</a>
 							<div class="portfolio-caption">
                                 <div class="portfolio-caption-heading mb-2">Vue Weather</div>
@@ -109,55 +109,8 @@
                                 </a>
 							</div>
 						</div>
-					</div>
-					<div class="col-lg-4 col-sm-6 mb-4">
-						<div class="portfolio-item">
-							<a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-								<div class="portfolio-hover">
-									<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-								</div>
-								<img class="img-fluid" src="assets/img/portfolio/to-do-app.png" alt="To do app project thumbnail" />
-							</a>
-							<div class="portfolio-caption">
-                                <div class="portfolio-caption-heading mb-2">To-do App</div>
-                                <a href="/">
-                                    <button type="button" class="btn btn-outline-primary btn-sm">
-                                        <i class="far fa-window-restore mr-1"></i>
-                                        <span>View</span>
-                                    </button></a>
-                                <a href="/">
-                                    <button type="button" class="btn btn-outline-secondary btn-sm ml-1">
-                                        <i class="fab fa-github mr-1"></i>
-                                        <span>Code</span>
-                                    </button>
-                                </a>
-							</div>
-						</div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
-						<div class="portfolio-item">
-							<a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-								<div class="portfolio-hover">
-									<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-								</div>
-								<img class="img-fluid" src="assets/img/portfolio/tip-calculator.png" alt="Tip calculator project thumbnail" />
-							</a>
-							<div class="portfolio-caption">
-                                <div class="portfolio-caption-heading mb-2">Tip Calculator</div>
-                                <a href="/">
-                                    <button type="button" class="btn btn-outline-primary btn-sm">
-                                        <i class="far fa-window-restore mr-1"></i>
-                                        <span>View</span>
-                                    </button></a>
-                                <a href="/">
-                                    <button type="button" class="btn btn-outline-secondary btn-sm ml-1">
-                                        <i class="fab fa-github mr-1"></i>
-                                        <span>Code</span>
-                                    </button>
-                                </a>
-							</div>
-						</div>
-                    </div>
+					</div> -->
+					
 				</div>
 			</div>
 		</section>
@@ -450,5 +403,14 @@
 		<script src="js/scripts.js"></script>
 		<!-- Internal JS -->
 		<script src="js/github.js"></script>
+
+		<script>
+			const view = new GithubApiView();
+
+			// GitHub Repositories to Render
+			view.getInfo('vue-weather');
+			view.getInfo('to-do-app');
+			view.getInfo('tip-calculator');
+		</script>
 	</body>
 </html>
