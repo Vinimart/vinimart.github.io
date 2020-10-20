@@ -1,8 +1,8 @@
 // This class is responsable for fetching the data from Github API.
 class GetApi {
 	constructor() {
-        this.view = new GithubApiView();
-        // This number is a reference to portfolio modal's ID.
+		this.view = new GithubApiView();
+		// This number is a reference to portfolio modal's ID.
 		this.modalNumber = 1;
 	}
 
@@ -22,7 +22,8 @@ class GetApi {
 
 		if (response.status === 200) {
 			const data = await response.json();
-			this.setResults(data, modal);
+            this.setResults(data, modal);
+            
 		} else console.error(`Could not find "${repo}" repository. Request status: ${response.status}`);
 	}
 
@@ -33,26 +34,35 @@ class GetApi {
 		this.url = this.data.svn_url;
 		this.name = this.data.name;
 		this.desc = this.data.description;
-		this.info = [this.url, this.name, this.desc];
-		this.view.setInfo(this.info, this.modalNumber);
+		this.info = [this.name, this.url, this.desc, this.modalNumber];
+		this.view.setInfo(this.info);
 	}
 }
 
 class GithubApiView {
 	constructor() {
 		this.portfolioContainer = document.getElementById("portfolioContainer");
+		this.portfolioModals = document.getElementById("portfolioModals");
 	}
 
-	// Set info arguments into the renderer method.
-	setInfo(info, modal) {
+	// Set the info array as arguments to the renderer method.
+	setInfo(info) {
 		this.info = info;
-		this.portfolioModal = modal;
-		this.renderPortfolioGrid(this.info[1], this.info[0], this.portfolioModal);
+        // this.info = [this.name, this.url, this.desc, this.modalNumber];
+		if (this.info[2] === null) { this.info[2] = "" };
+
+		this.renderPortfolioGrid(this.info[0], this.info[1], this.info[3]);
+		this.renderPortfolioModal(this.info[0], this.info[1], this.info[2], this.info[3]);
 	}
 
-	// Insert portfolio component after the last child of main container.
+	// Render portfolio component after the last child of main container.
 	renderPortfolioGrid(name, url, modal) {
 		this.portfolioContainer.insertAdjacentHTML("beforeend", this.portfolioTemplate(name, url, modal));
+	}
+
+	// Render portfolio modal component after the last child of main container.
+	renderPortfolioModal(name, url, desc, modal) {
+		this.portfolioModals.insertAdjacentHTML("beforeend", this.portfolioModalTemplate(name, url, desc, modal));
 	}
 
 	// Portfolio item component template.
@@ -71,18 +81,62 @@ class GithubApiView {
 
                 <div class="portfolio-caption">
                     <div class="portfolio-caption-heading mb-2">${name}</div>
-                    <a href="https://vinimart.github.io/${name}">
+                    <a target="_blank" href="/${name}">
                         <button type="button" class="btn btn-outline-primary btn-sm">
                             <i class="far fa-window-restore mr-1"></i>
                             <span>View</span>
                         </button></a>
 
-                    <a href="${url}">
+                    <a target="_blank" rel=”noopener noreferrer” href="${url}">
                         <button type="button" class="btn btn-outline-secondary btn-sm ml-1">
                             <i class="fab fa-github mr-1"></i>
                             <span>Code</span>
                         </button>
                     </a>
+                </div>
+            </div>
+        </div>
+        `;
+	}
+
+    // Portfolio modal component template.
+	portfolioModalTemplate(name, url, desc, modal) {
+		return `
+        <div class="portfolio-modal modal fade" id="portfolioModal${modal}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project Details Go Here-->
+                                    <h2 class="text-uppercase mb-3">${name}</h2>
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/${name}.png"
+                                        onerror="this.onerror=null; this.src='https://via.placeholder.com/356x245/505050/FED136?text=${name}';"
+                                        alt="${name} project thumbnail" />
+                                    <p>${desc}</p>
+                                    
+                                    <div class="portfolio-caption">
+                                        <a target="_blank" href="/${name}">
+                                            <button type="button" class="btn btn-outline-primary btn-sm">
+                                                <i class="far fa-window-restore mr-1"></i>
+                                                <span>View</span>
+                                            </button></a>
+                                        <a target="_blank" rel=”noopener noreferrer” href="${url}">
+                                            <button type="button" class="btn btn-outline-secondary btn-sm ml-1">
+                                                <i class="fab fa-github mr-1"></i>
+                                                <span>Code</span>
+                                            </button></a>
+                                        <button class="btn btn-danger btn-sm ml-1" data-dismiss="modal" type="button">
+                                            <i class="fas fa-times mr-1"></i>
+                                            Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
