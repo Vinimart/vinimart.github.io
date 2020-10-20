@@ -1,12 +1,17 @@
 class GetApi {
-    constructor() {
-        this.view = new GithubApiView();
-    }
+	constructor() {
+		this.view = new GithubApiView();
+	}
 
 	async githubFetch(repo) {
-		const response = await fetch(`https://api.github.com/repos/Vinimart/${repo}`);
-		const data = await response.json();
-		this.setResults(data);
+        const response = await fetch(`https://api.github.com/repos/Vinimart/${repo}`);
+        
+		if (response.status === 200) {
+			const data = await response.json();
+			this.setResults(data);
+		} else {
+			console.error(`Could not find "${repo}" repository. Request status: ${response.status}`);
+		}
 	}
 
 	setResults(data) {
@@ -26,12 +31,12 @@ class GithubApiView {
 	}
 
 	getInfo(repo) {
-        this.getApi = new GetApi();
+		this.getApi = new GetApi();
 
 		if (repo) {
 			return this.getApi.githubFetch(repo);
 		} else {
-			return console.error("Please insert repository name as argument for getInfo method.");
+			return console.error("Please insert a valid repository name as argument for getInfo method.");
 		}
 	}
 
