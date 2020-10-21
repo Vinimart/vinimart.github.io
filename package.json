@@ -1,0 +1,24 @@
+{
+  "name": "vinimart.github.io",
+  "version": "1.0.0",
+  "description": "Vinicius Martins - Front end Developer Portfolio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vinimart/vinimart.github.io.git"
+  },
+  "keywords": [
+    "portfolio",
+    "vinimartdev",
+    "frontend"
+  ],
+  "author": "Vinicius Martins",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vinimart/vinimart.github.io/issues"
+  },
+  "homepage": "https://github.com/Vinimart/vinimart.github.io#readme"
+}
