@@ -7,10 +7,11 @@ var gulp = require("gulp"),
 	cleanCSS = require("gulp-clean-css");
 
 // Assets
-gulp.task("build-img", function (done) {
-	gulp.src("assets/img/**/*").pipe(imagemin()).pipe(gulp.dest("assets/img"));
-	done();
-});
+gulp.task("build-img", () => 
+	gulp.src("assets/img/**/*")
+		.pipe(imagemin())
+		.pipe(gulp.dest("dist/assets/img"))
+);
 
 // Javascript
 gulp.task("build-js", () =>

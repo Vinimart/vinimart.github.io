@@ -75,7 +75,7 @@ class GithubApiView {
                     <div class="portfolio-hover">
                         <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                     </div>
-                    <img class="img-fluid" src="assets/img/portfolio/${name}.png"
+                    <img class="img-fluid" src="dist/assets/img/portfolio/${name}.png"
                         onerror="this.onerror=null; this.src='https://via.placeholder.com/356x245/505050/FED136?text=${name}';"
                         alt="${name} project thumbnail" />
                 </a>
@@ -106,14 +106,14 @@ class GithubApiView {
         <div class="portfolio-modal modal fade" id="portfolioModal${modal}" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="close-modal" data-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="close-modal" data-dismiss="modal"><img src="dist/assets/img/close-icon.svg" alt="Close modal" /></div>
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project Details Go Here-->
                                     <h2 class="text-uppercase mb-3">${name}</h2>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/${name}.png"
+                                    <img class="img-fluid d-block mx-auto" src="dist/assets/img/portfolio/${name}.png"
                                         onerror="this.onerror=null; this.src='https://via.placeholder.com/356x245/505050/FED136?text=${name}';"
                                         alt="${name} project thumbnail" />
                                     <p>${desc}</p>
