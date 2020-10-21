@@ -22,8 +22,7 @@ class GetApi {
 
 		if (response.status === 200) {
 			const data = await response.json();
-            this.setResults(data, modal);
-            
+			this.setResults(data, modal);
 		} else console.error(`Could not find "${repo}" repository. Request status: ${response.status}`);
 	}
 
@@ -48,8 +47,10 @@ class GithubApiView {
 	// Set the info array as arguments to the renderer method.
 	setInfo(info) {
 		this.info = info;
-        // this.info = [this.name, this.url, this.desc, this.modalNumber];
-		if (this.info[2] === null) { this.info[2] = "" };
+		// this.info = [this.name, this.url, this.desc, this.modalNumber];
+		if (this.info[2] === null) {
+			this.info[2] = "";
+		}
 
 		this.renderPortfolioGrid(this.info[0], this.info[1], this.info[3]);
 		this.renderPortfolioModal(this.info[0], this.info[1], this.info[2], this.info[3]);
@@ -99,7 +100,7 @@ class GithubApiView {
         `;
 	}
 
-    // Portfolio modal component template.
+	// Portfolio modal component template.
 	portfolioModalTemplate(name, url, desc, modal) {
 		return `
         <div class="portfolio-modal modal fade" id="portfolioModal${modal}" tabindex="-1" role="dialog" aria-hidden="true">
@@ -143,3 +144,10 @@ class GithubApiView {
         `;
 	}
 }
+
+// GitHub Repositories Components to Render in Portfolio Section.
+const getApi = new GetApi();
+
+getApi.getInfo("vue-weather");
+getApi.getInfo("to-do-app");
+getApi.getInfo("tip-calculator");
