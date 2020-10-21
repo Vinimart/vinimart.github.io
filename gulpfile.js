@@ -3,8 +3,8 @@ var gulp = require("gulp"),
 	concat = require("gulp-concat"),
 	babel = require("gulp-babel"),
 	webpack = require("webpack-stream"),
-	autoprefixer = require("gulp-autoprefixer");
-cleanCSS = require("gulp-clean-css");
+	autoprefixer = require("gulp-autoprefixer"),
+	cleanCSS = require("gulp-clean-css");
 
 // Assets
 gulp.task("build-img", function (done) {
@@ -42,13 +42,19 @@ gulp.task("build-css", () =>
 				cascade: false,
 			})
 		)
-		.pipe(cleanCSS({ compatibility: "ie8" }))
+		.pipe(
+			cleanCSS({
+				compatibility: "ie8",
+			})
+		)
 		.pipe(concat("all.min.css"))
 		.pipe(gulp.dest("dist/styles"))
 );
 
+// Monitor
 function defaultTask(cb) {
-	// place code for your default task here
+	gulp.watch("js/*.js", gulp.series("build-js"));
+	gulp.watch("css/*.css", gulp.series("build-css"));
 	cb();
 }
 
