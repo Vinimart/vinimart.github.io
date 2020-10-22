@@ -1,4 +1,4 @@
-// This class is responsable for fetching the data from Github API.
+// This class is responsible for fetching the data from Github API.
 class GetApi {
 	constructor() {
 		this.view = new GithubApiView();
@@ -6,7 +6,7 @@ class GetApi {
 		this.modalNumber = 1;
 	}
 
-	// This method is responsable for validating the repository name and setting the argument for githubFetch().
+	// This method is responsible for validating the repository name and setting the argument for githubFetch().
 	getInfo(repo) {
 		if (repo) {
 			// Increments modal number every time when a portfolio component is rendered;
@@ -145,7 +145,7 @@ class GithubApiView {
 	}
 }
 
-// GitHub Repositories Components to Render in Portfolio Section
+// GitHub Repositories Components to Render in Portfolio Section.
 const getApi = new GetApi();
 
 getApi.getInfo("vue-weather");
