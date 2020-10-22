@@ -145,7 +145,7 @@ class GithubApiView {
 	}
 }
 
-// GitHub Repositories Components to Render in Portfolio Section
+// GitHub Repositories Components to Render in Portfolio Section.
 const getApi = new GetApi();
 
 getApi.getInfo("vue-weather");
