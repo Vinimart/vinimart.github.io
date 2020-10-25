@@ -10548,5 +10548,6 @@ section#contact form#contactForm :-ms-input-placeholder {
 
 /* 404 - Page */
 .notfound-section {
+  height: 100vh;
   background-color: #212529;
 }
