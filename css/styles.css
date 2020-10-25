@@ -6155,7 +6155,8 @@ button.bg-light:focus {
 }
 
 .bg-dark {
-  background-color: #343a40 !important;
+  /* background-color: #343a40 !important; */
+  background-color: #212529 !important;
 }
 
 a.bg-dark:hover, a.bg-dark:focus,
@@ -10136,7 +10137,7 @@ header.masthead {
   padding-bottom: 6rem;
   text-align: center;
   color: #fff;
-  background-image: url("/assets/img/header-bg.jpg");
+  background-image: url("/dist/assets/img/header-bg.jpg");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: top center;
@@ -10449,7 +10450,7 @@ header.masthead .masthead-heading {
 
 section#contact {
   background-color: #212529;
-  background-image: url("/assets/img/map-image.png");
+  background-image: url("/dist/assets/img/map-image.png");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -10543,4 +10544,9 @@ section#contact form#contactForm :-ms-input-placeholder {
 #about .about-icon {
   width: 50px;
   height: 50px;
+}
+
+/* 404 - Page */
+.notfound-section {
+  background-color: #212529;
 }
