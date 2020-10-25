@@ -47,10 +47,9 @@ class GithubApiView {
 	// Set the info array as arguments to the renderer method.
 	setInfo(info) {
 		this.info = info;
-		// this.info = [this.name, this.url, this.desc, this.modalNumber];
-		if (this.info[2] === null) {
-			this.info[2] = "";
-		}
+        // this.info = [this.name, this.url, this.desc, this.modalNumber];
+        
+		if (this.info[2] === null) this.info[2] = "";
 
 		this.renderPortfolioGrid(this.info[0], this.info[1], this.info[3]);
 		this.renderPortfolioModal(this.info[0], this.info[1], this.info[2], this.info[3]);
@@ -58,12 +57,12 @@ class GithubApiView {
 
 	// Render portfolio component after the last child of main container.
 	renderPortfolioGrid(name, url, modal) {
-		this.portfolioContainer.insertAdjacentHTML("beforeend", this.portfolioTemplate(name, url, modal));
+		if (this.portfolioContainer) this.portfolioContainer.insertAdjacentHTML("beforeend", this.portfolioTemplate(name, url, modal));
 	}
 
 	// Render portfolio modal component after the last child of main container.
 	renderPortfolioModal(name, url, desc, modal) {
-		this.portfolioModals.insertAdjacentHTML("beforeend", this.portfolioModalTemplate(name, url, desc, modal));
+		if (this.portfolioModals) this.portfolioModals.insertAdjacentHTML("beforeend", this.portfolioModalTemplate(name, url, desc, modal));
 	}
 
 	// Portfolio item component template.
