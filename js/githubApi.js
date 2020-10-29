@@ -144,9 +144,10 @@ class GithubApiView {
 	}
 }
 
-// GitHub Repositories Components to Render in Portfolio Section.
+// Initialization: GitHub Repositories Components to Render in Portfolio Section.
 const getApi = new GetApi();
 
 getApi.getInfo("vue-weather");
 getApi.getInfo("to-do-app");
 getApi.getInfo("tip-calculator");
+getApi.getInfo("p2p");
