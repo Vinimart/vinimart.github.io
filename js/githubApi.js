@@ -5,28 +5,34 @@ class GetApi {
 	constructor() {
 		this.view = new GithubApiView();
 		// This number is a reference to portfolio modal's ID.
-        this.modalNumber = 1;
+		this.modalNumber = 1;
 	}
 
 	// This method is responsible for validating the repository name and setting the argument for githubFetch().
+	// In case of an invalid argument the program will not break.
 	getInfo(repo) {
-		if (repo) {
-            // Increments modal number every time when a portfolio component is rendered;
-            return this.githubFetch(repo, this.modalNumber++);
+		this.repo = repo.toString();
+		if (this.repo) {
+			// Increments modal number every time when a portfolio component is rendered;
+			return this.githubFetch(this.repo, this.modalNumber++);
 		} else {
-			return console.error("Please insert a valid repository name as argument for getInfo method.");
+			return console.error(`"${this.repo}": getInfo requires a valid string as argument at initialization.`);
 		}
 	}
 
 	// Request
 	async githubFetch(repo, modal) {
-        // userName and gitHubToken imported from "./gitHubToken.js".
+		// userName and gitHubToken imported from "./gitHubToken.js".
 		const response = await fetch(`https://api.github.com/repos/${userName}/${repo}?client_id=${userName}&client_secret=${gitHubToken}`);
 
+        // Data and error handling
 		if (response.status === 200) {
 			const data = await response.json();
 			this.setResults(data, modal);
-		} else console.error(`Could not find "${repo}" repository. Request status: ${response.status}`);
+		} else {
+			console.error(`Error trying to reach "${repo}" repository. Request status: ${response.status}`);
+			this.view.renderPortfolioError(response.status, userName);
+		}
 	}
 
 	// Set the response from the request to the View layer.
@@ -44,14 +50,15 @@ class GetApi {
 class GithubApiView {
 	constructor() {
 		this.portfolioContainer = document.getElementById("portfolioContainer");
-		this.portfolioModals = document.getElementById("portfolioModals");
+        this.portfolioModals = document.getElementById("portfolioModals");
+        this.portfolioError = document.getElementById("portfolioErrorHandle");
 	}
 
 	// Set the info array as arguments to the renderer method.
 	setInfo(info) {
 		this.info = info;
-        // this.info = [this.name, this.url, this.desc, this.modalNumber];
-        
+		// this.info = [this.name, this.url, this.desc, this.modalNumber];
+
 		if (this.info[2] === null) this.info[2] = "";
 
 		this.renderPortfolioGrid(this.info[0], this.info[1], this.info[3]);
@@ -66,6 +73,13 @@ class GithubApiView {
 	// Render portfolio modal component after the last child of main container.
 	renderPortfolioModal(name, url, desc, modal) {
 		if (this.portfolioModals) this.portfolioModals.insertAdjacentHTML("beforeend", this.portfolioModalTemplate(name, url, desc, modal));
+	}
+
+	// Render portfolio section error message in case of http failure.
+	renderPortfolioError(errorMsg, name) {
+        if (errorMsg === "404") this.portfolioContainer.insertAdjacentHTML("beforeend", this.portfolioErrorTemplate404(errorMsg, name));
+        // innerHTML is used in this case to prevent rendering multiple error messages in the container.
+        else this.portfolioError.innerHTML= this.portfolioErrorTemplateGeneral(errorMsg, name);
 	}
 
 	// Portfolio item component template.
@@ -145,12 +159,43 @@ class GithubApiView {
         </div>
         `;
 	}
+
+	// Portfolio error handling component template.
+	portfolioErrorTemplateGeneral(errorMsg, name) {
+		return `
+        <div id="portfolioError" class="text-center">
+            <p class="text-muted">Ops, something went wrong<br>${errorMsg} Error</p>
+            <h6 class="text-muted">
+                But you can still check my portfolio on <a href="https://github.com/${name}/">Github</a>!
+                <i class="fab fa-github-alt"></i>
+            </h6>
+        </div>
+        `;
+	}
+
+	// Portfolio error handling component template for 404 error, this component uses the same portfolio component template structure.
+	portfolioErrorTemplate404(errorMsg, name) {
+		return `
+        <div class="col-lg-4 col-sm-6 mb-4">
+            <div class="portfolio-item">
+                <a class="portfolio-link" href="https://github.com/${name}/">
+                    <div class="portfolio-hover">
+                        <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                    </div>
+                    <img class="img-fluid" src="https://via.placeholder.com/356x245/505050/FED136?text=${errorMsg}+Error" alt="${errorMsg} Error" />
+                </a>
+
+                <div class="portfolio-caption">
+                    <p class="text-muted">Ops, something went wrong</p>
+                    <h6 class="text-muted">
+                        Check my portfolio on <a href="https://github.com/${name}/">Github</a>!
+                        <i class="fab fa-github-alt"></i><br>
+                    </h6>
+                </div>
+            </div>
+        </div>
+        `;
+	}
 }
 
-// Initialization: GitHub Repositories Components to Render in Portfolio Section.
-const getApi = new GetApi();
-
-getApi.getInfo("vue-weather");
-getApi.getInfo("to-do-app");
-getApi.getInfo("tip-calculator");
-getApi.getInfo("p2p");
+export { GetApi };
