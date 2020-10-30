@@ -1,16 +1,18 @@
+import { userName, gitHubToken } from "./gitHubToken";
+
 // This class is responsible for fetching the data from Github API.
 class GetApi {
 	constructor() {
 		this.view = new GithubApiView();
 		// This number is a reference to portfolio modal's ID.
-		this.modalNumber = 1;
+        this.modalNumber = 1;
 	}
 
 	// This method is responsible for validating the repository name and setting the argument for githubFetch().
 	getInfo(repo) {
 		if (repo) {
-			// Increments modal number every time when a portfolio component is rendered;
-			return this.githubFetch(repo, this.modalNumber++);
+            // Increments modal number every time when a portfolio component is rendered;
+            return this.githubFetch(repo, this.modalNumber++);
 		} else {
 			return console.error("Please insert a valid repository name as argument for getInfo method.");
 		}
@@ -18,7 +20,8 @@ class GetApi {
 
 	// Request
 	async githubFetch(repo, modal) {
-		const response = await fetch(`https://api.github.com/repos/Vinimart/${repo}`);
+        // userName and gitHubToken imported from "./gitHubToken.js".
+		const response = await fetch(`https://api.github.com/repos/${userName}/${repo}?client_id=${userName}&client_secret=${gitHubToken}`);
 
 		if (response.status === 200) {
 			const data = await response.json();
