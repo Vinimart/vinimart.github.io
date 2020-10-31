@@ -75,10 +75,10 @@ class GithubApiView {
 		if (this.portfolioModals) this.portfolioModals.insertAdjacentHTML("beforeend", this.portfolioModalTemplate(name, url, desc, modal));
 	}
 
-	// Render portfolio section error message in case of http failure.
+    // Render portfolio section error message in case of http failure.
+    // innerHTML is used for portfolioErrorTemplateGeneral to prevent rendering multiple error messages in the container.
 	renderPortfolioError(errorMsg, name) {
-        if (errorMsg === "404") this.portfolioContainer.insertAdjacentHTML("beforeend", this.portfolioErrorTemplate404(errorMsg, name));
-        // innerHTML is used in this case to prevent rendering multiple error messages in the container.
+        if (errorMsg === 404) this.portfolioContainer.insertAdjacentHTML("beforeend", this.portfolioErrorTemplate404(errorMsg, name));
         else this.portfolioError.innerHTML= this.portfolioErrorTemplateGeneral(errorMsg, name);
 	}
 
@@ -92,7 +92,7 @@ class GithubApiView {
                         <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                     </div>
                     <img class="img-fluid" src="dist/assets/img/portfolio/${name}.png"
-                        onerror="this.onerror=null; this.src='https://via.placeholder.com/356x245/505050/FED136?text=${name}';"
+                        onerror="this.onerror=null; this.src='dist/assets/img/portfolio/error-img.png';"
                         alt="${name} project thumbnail" />
                 </a>
 
@@ -130,7 +130,7 @@ class GithubApiView {
                                     <!-- Project Details Go Here-->
                                     <h2 class="text-uppercase mb-3">${name}</h2>
                                     <img class="img-fluid d-block mx-auto" src="dist/assets/img/portfolio/${name}.png"
-                                        onerror="this.onerror=null; this.src='https://via.placeholder.com/356x245/505050/FED136?text=${name}';"
+                                        onerror="this.onerror=null; this.src='dist/assets/img/portfolio/error-img.png';"
                                         alt="${name} project thumbnail" />
                                     <p>${desc}</p>
                                     
@@ -180,16 +180,16 @@ class GithubApiView {
             <div class="portfolio-item">
                 <a class="portfolio-link" href="https://github.com/${name}/">
                     <div class="portfolio-hover">
-                        <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                        <div class="portfolio-hover-content"><i class="fab fa-github-alt fa-3x"></i></div>
                     </div>
-                    <img class="img-fluid" src="https://via.placeholder.com/356x245/505050/FED136?text=${errorMsg}+Error" alt="${errorMsg} Error" />
+                    <img class="img-fluid" src="dist/assets/img/portfolio/error-img.png" alt="${errorMsg} Error" />
                 </a>
-
+                
                 <div class="portfolio-caption">
-                    <p class="text-muted">Ops, something went wrong</p>
-                    <h6 class="text-muted">
+                    <p class="text-muted">Ops, we couldn't find this one</p>
+                    <h6 class="text-muted pb-1">
                         Check my portfolio on <a href="https://github.com/${name}/">Github</a>!
-                        <i class="fab fa-github-alt"></i><br>
+                        <i class="fab fa-github-alt"></i>
                     </h6>
                 </div>
             </div>
