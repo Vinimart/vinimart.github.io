@@ -1,5 +1,5 @@
 # Vinicius Martins - Front end Developer Portfolio
-Public repository for my personal Github Pages portfolio.
+Public repository for my personal Github Page portfolio.
 
 https://vinimart.github.io/
 
