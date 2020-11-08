@@ -4,10 +4,10 @@
   "description": "Vinicius Martins - Front end Developer Portfolio",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jasmine",
     "gulp": "gulp",
     "start-cy": "http-server ./ --port=5001 -c-1",
-    "tests": "cypress open"
+    "e2e": "cypress open"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,7 @@
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
     "gulp-imagemin": "^7.1.0",
+    "jasmine": "^3.6.3",
     "webpack-stream": "^6.1.0"
   },
   "dependencies": {
