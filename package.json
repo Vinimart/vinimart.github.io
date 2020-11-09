@@ -4,10 +4,9 @@
   "description": "Vinicius Martins - Front end Developer Portfolio",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cypress open",
     "gulp": "gulp",
-    "start-cy": "http-server ./ --port=5001 -c-1",
-    "tests": "cypress open"
+    "start-server": "http-server ./ --port=5001 -c-1"
   },
   "repository": {
     "type": "git",
