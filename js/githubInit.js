@@ -1,9 +1,23 @@
-import { GetApi } from "./githubApi";
+import { GetApi } from "./GitHubApi";
 
-// Initialization: GitHub Repositories Components to Render in Portfolio Section.
-const getApi = new GetApi();
+class GitHubInit {
+    constructor() {
+        this.getApi = new GetApi();
+    }
 
-getApi.getInfo("p2p");
-getApi.getInfo("vue-weather");
-getApi.getInfo("to-do-app");
-getApi.getInfo("tip-calculator");
+	addRepo(repo) {
+		this.repo = [];
+		this.repo.push(...repo);
+		this.repo.forEach((item) => {
+			this.getApi.getInfo(item);
+		});
+	}
+}
+
+const gitHubInit = new GitHubInit();
+gitHubInit.addRepo([
+    "p2p", 
+    "vue-weather", 
+    "to-do-app", 
+    "tip-calculator"
+]);
