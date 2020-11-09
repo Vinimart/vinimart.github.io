@@ -5,10 +5,10 @@
   "description": "Vinicius Martins - Front end Developer Portfolio",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "gulp": "gulp",
+    "test": "mocha || exit 0",
+    "test-cypress": "cypress open",
     "start-cy": "http-server ./ --port=5001 -c-1",
-    "test-e2e": "cypress open"
+    "gulp": "gulp"
   },
   "repository": {
     "type": "git",
