@@ -12,19 +12,21 @@ export class GetApi {
 	// This method is responsible for validating the repository name and setting the argument for githubFetch().
 	// In case of an invalid argument the program will not break.
 	getInfo(repo) {
-		this.repo = repo.toString();
+		this.repo = repo;
 		if (this.repo) {
 			// Increments modal number every time when a portfolio component is rendered;
 			return this.githubFetch(this.repo, this.modalNumber++);
 		} else {
-			return console.error(`"${this.repo}": getInfo requires a valid string as argument at initialization.`);
+			return console.error(`Repository: "${this.repo}" - getInfo requires a valid string as argument at initialization.`);
 		}
 	}
 
 	// HTTP Request
 	async githubFetch(repo, modal) {
 		// userName and gitHubToken imported from "./gitHubToken.js".
-		const response = await fetch(`https://api.github.com/repos/${access.userName}/${repo}?client_id=${access.userName}&client_secret=${access.gitHubToken}`);
+		const response = await fetch(
+			`https://api.github.com/repos/${access.userName}/${repo}?client_id=${access.userName}&client_secret=${access.gitHubToken}`
+			);
 
         // Data and error handling
 		if (response.status === 200) {
@@ -44,7 +46,7 @@ export class GetApi {
 		this.name = this.data.name;
 		this.desc = this.data.description;
         this.info = [this.name, this.url, this.desc, this.modalNumber];
-        
+        // View
 		this.view.setInfo(this.info);
 	}
 }
