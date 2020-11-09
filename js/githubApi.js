@@ -1,5 +1,5 @@
 import { GithubApiView } from "./GithubApiView";
-import { userName, gitHubToken } from "./GitHubToken";
+import { access } from "./GitHubToken";
 
 // This class is responsible for fetching the data from Github API.
 export class GetApi {
@@ -21,10 +21,10 @@ export class GetApi {
 		}
 	}
 
-	// Request
+	// HTTP Request
 	async githubFetch(repo, modal) {
 		// userName and gitHubToken imported from "./gitHubToken.js".
-		const response = await fetch(`https://api.github.com/repos/${userName}/${repo}?client_id=${userName}&client_secret=${gitHubToken}`);
+		const response = await fetch(`https://api.github.com/repos/${access.userName}/${repo}?client_id=${access.userName}&client_secret=${access.gitHubToken}`);
 
         // Data and error handling
 		if (response.status === 200) {
@@ -32,7 +32,7 @@ export class GetApi {
 			this.setResults(data, modal);
 		} else {
 			console.error(`Error trying to reach "${repo}" repository. Request status: ${response.status}`);
-			this.view.renderPortfolioError(response.status, userName);
+			this.view.renderPortfolioError(response.status, access.userName);
 		}
 	}
 
