@@ -5,7 +5,7 @@
   "description": "Vinicius Martins - Front end Developer Portfolio",
   "main": "index.js",
   "scripts": {
-    "test": "mocha || exit 0",
+    "test": "mocha --recursive || exit 0",
     "test-cypress": "cypress open",
     "start-cy": "http-server ./ --port=5001 -c-1",
     "gulp": "gulp"
