@@ -1,17 +1,20 @@
 # Vinicius Martins - Front end Developer Portfolio
+
 Public repository for my personal Github Page portfolio.
 
 https://vinimart.github.io/
 
 ## Dependencies
+
     "@babel/runtime": "^7.12.1",
     "@fortawesome/fontawesome-free": "^5.15.1",
     "@popperjs/core": "^2.5.3",
     "bootstrap": "^4.5.3",
     "http-server": "^0.12.3",
     "jquery": "^3.5.1"
-    
+
 ## Development Dependencies
+
     "@babel/core": "^7.12.3",
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
