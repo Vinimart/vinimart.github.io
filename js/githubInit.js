@@ -19,5 +19,6 @@ gitHubInit.addRepo([
     "p2p", 
     "vue-weather", 
     "to-do-app", 
-    "tip-calculator"
+    "tip-calculator",
+    "mundiware-assessment"
 ]);
