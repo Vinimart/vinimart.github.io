@@ -20,5 +20,6 @@ gitHubInit.addRepo([
     "vue-weather", 
     "to-do-app", 
     "tip-calculator",
-    "mundiware-assessment"
+    "mundiware-assessment",
+    "vinimart.github.io"
 ]);
